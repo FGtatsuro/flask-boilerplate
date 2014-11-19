@@ -86,7 +86,7 @@ class Hierarchy(CustomCommand):
 
     def run(self):
         self._create_directory()
-        self._create_gitignore()
+        self._create_gitkeep()
         self._create_packages()
         self._create_controller()
         self._create_model()
@@ -105,12 +105,12 @@ class Hierarchy(CustomCommand):
                 print('    {0}:{1}'.format(d, e.strerror))
         return dirs
 
-    def _create_gitignore(self):
+    def _create_gitkeep(self):
         dirs = [os.path.join(self.root, d) for d in
                 ('controller', 'model', 'static/css',
                  'templates/layout', 'templates/{0}'.format(self.root))]
         for d in dirs:
-            f = os.path.join(d, '.gitignore')
+            f = os.path.join(d, '.gitkeep')
             with open(f, 'w'):
                 pass
 
