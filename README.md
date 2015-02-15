@@ -1,7 +1,7 @@
 flask-boilerplate
 =================
 
-Some tasks to create specified projects hierarchy for Flask
+Some tasks to create specified projects hierarchy for Flask.
 
 Create specified project hierarchy
 ----------------------------------
