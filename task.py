@@ -60,7 +60,7 @@ class Heroku(CustomCommand):
         with open('Procfile', 'w') as f:
             f.write('web: python run.py')
         with open('runtime.txt', 'w') as f:
-            f.write('python-3.3.2')
+            f.write('python-3.4.2')
 
 
 # TODO: Refactor duplicated code
