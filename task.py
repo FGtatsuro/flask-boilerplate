@@ -96,8 +96,7 @@ class Hierarchy(CustomCommand):
         self._create_runscript()
 
     def _create_directory(self):
-        dirs = [os.path.join(self.root, d) for d in
-                ('static/css', 'templates/layout', 'templates/{0}'.format(self.root))]
+        dirs = [os.path.join(self.root, d) for d in ('static/css', 'templates/layout')]
         for d in dirs:
             try:
                 os.makedirs(d)
@@ -106,8 +105,7 @@ class Hierarchy(CustomCommand):
         return dirs
 
     def _create_gitkeep(self):
-        dirs = [os.path.join(self.root, d) for d in
-                ('static/css', 'templates/layout', 'templates/{0}'.format(self.root))]
+        dirs = [os.path.join(self.root, d) for d in ('static/css', 'templates/layout')]
         for d in dirs:
             f = os.path.join(d, '.gitkeep')
             with open(f, 'w'):
