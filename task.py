@@ -130,7 +130,7 @@ class Hierarchy(CustomCommand):
 
     def _create_model(self):
         f = os.path.join(
-            self.root, 'model', '{0}.py'.format(self.controller))
+            self.root, 'model', '{0}.py'.format(self.model))
         with open(f, 'w'):
             pass
 
