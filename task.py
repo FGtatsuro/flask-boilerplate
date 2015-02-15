@@ -101,7 +101,7 @@ class Hierarchy(CustomCommand):
             try:
                 os.makedirs(d)
             except Exception as e:
-                print('    {0}:{1}'.format(d, e.strerror))
+                print('{0}:{1}'.format(d, e.strerror))
         return dirs
 
     def _create_gitkeep(self):
