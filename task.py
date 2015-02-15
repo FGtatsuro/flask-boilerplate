@@ -96,8 +96,7 @@ class Hierarchy(CustomCommand):
 
     def _create_directory(self):
         dirs = [os.path.join(self.root, d) for d in
-                ('controller', 'model', 'static/css',
-                 'templates/layout', 'templates/{0}'.format(self.root))]
+                ('static/css', 'templates/layout', 'templates/{0}'.format(self.root))]
         for d in dirs:
             try:
                 os.makedirs(d)
@@ -107,28 +106,23 @@ class Hierarchy(CustomCommand):
 
     def _create_gitkeep(self):
         dirs = [os.path.join(self.root, d) for d in
-                ('controller', 'model', 'static/css',
-                 'templates/layout', 'templates/{0}'.format(self.root))]
+                ('static/css', 'templates/layout', 'templates/{0}'.format(self.root))]
         for d in dirs:
             f = os.path.join(d, '.gitkeep')
             with open(f, 'w'):
                 pass
 
     def _create_packages(self):
-        dirs = [os.path.join(self.root, d) for d in ('controller', 'model')]
-        dirs.append(self.root)
-        for d in dirs:
-            f = os.path.join(d, '__init__.py')
-            with open(f, 'w'):
-                pass
+        self._create_module_with_shebang(
+                os.path.join(self.root, '__init__.py'))
 
     def _create_controller(self):
         self._create_module_with_shebang(
-                os.path.join(self.root, 'controller', '{0}.py'.format(self.controller)))
+                os.path.join(self.root, '{0}.py'.format(self.controller)))
 
     def _create_model(self):
         self._create_module_with_shebang(
-                os.path.join(self.root, 'model', '{0}.py'.format(self.model)))
+                os.path.join(self.root, '{0}.py'.format(self.model)))
 
     def _create_static(self):
         f = os.path.join(self.root, 'static/css', 'style.css')
