@@ -34,8 +34,7 @@ class Init(CustomCommand):
         self.model = None
 
     def finalize_options(self):
-        if (not self.root or not self.controller or not self.model):
-            raise Exception("Some options are shortage.")
+        pass
 
     def run(self):
         # TODO: better way to pass option args to sub commands.
@@ -73,14 +72,16 @@ class Hierarchy(CustomCommand):
     sub_commands = []
 
     def initialize_options(self):
+        # Default values
         self.root = None
-        self.controller = None
-        self.model = None
+        self.controller = 'controllers'
+        self.model = 'models'
 
     def finalize_options(self):
-        self.root = self.root or self.__class__._root
-        self.controller = self.controller or self.__class__._controller
-        self.model = self.model or self.__class__._model
+        # Values passed from parent command precede
+        self.root = self.__class__._root or self.root
+        self.controller = self.__class__._controller or self.controller
+        self.model = self.__class__._model or self.model
         if (not self.root or not self.controller or not self.model):
             raise Exception("Some options are shortage.")
 
