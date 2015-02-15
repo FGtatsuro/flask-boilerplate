@@ -123,16 +123,12 @@ class Hierarchy(CustomCommand):
                 pass
 
     def _create_controller(self):
-        f = os.path.join(
-            self.root, 'controller', '{0}.py'.format(self.controller))
-        with open(f, 'w'):
-            pass
+        self._create_module_with_shebang(
+                os.path.join(self.root, 'controller', '{0}.py'.format(self.controller)))
 
     def _create_model(self):
-        f = os.path.join(
-            self.root, 'model', '{0}.py'.format(self.model))
-        with open(f, 'w'):
-            pass
+        self._create_module_with_shebang(
+                os.path.join(self.root, 'model', '{0}.py'.format(self.model)))
 
     def _create_static(self):
         f = os.path.join(self.root, 'static/css', 'style.css')
@@ -145,8 +141,14 @@ class Hierarchy(CustomCommand):
             pass
 
     def _create_runscript(self):
-        f = 'run.py'
-        with open(f, 'w'):
-            pass
+        self._create_module_with_shebang('run.py')
+
+    def _create_module_with_shebang(self, filename):
+        with open(filename, 'w') as f:
+            f.write('''\
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+''')
 
 setup(cmdclass={'init': Init, 'heroku': Heroku, 'hierarchy': Hierarchy})
