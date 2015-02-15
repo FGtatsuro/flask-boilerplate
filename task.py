@@ -34,8 +34,7 @@ class Init(CustomCommand):
         self.model = None
 
     def finalize_options(self):
-        if (not self.root or not self.controller or not self.model):
-            raise Exception("Some options are shortage.")
+        pass
 
     def run(self):
         # TODO: better way to pass option args to sub commands.
@@ -73,14 +72,16 @@ class Hierarchy(CustomCommand):
     sub_commands = []
 
     def initialize_options(self):
+        # Default values
         self.root = None
-        self.controller = None
-        self.model = None
+        self.controller = 'controllers'
+        self.model = 'models'
 
     def finalize_options(self):
-        self.root = self.root or self.__class__._root
-        self.controller = self.controller or self.__class__._controller
-        self.model = self.model or self.__class__._model
+        # Values passed from parent command precede
+        self.root = self.__class__._root or self.root
+        self.controller = self.__class__._controller or self.controller
+        self.model = self.__class__._model or self.model
         if (not self.root or not self.controller or not self.model):
             raise Exception("Some options are shortage.")
 
@@ -96,8 +97,7 @@ class Hierarchy(CustomCommand):
 
     def _create_directory(self):
         dirs = [os.path.join(self.root, d) for d in
-                ('controller', 'model', 'static/css',
-                 'templates/layout', 'templates/{0}'.format(self.root))]
+                ('static/css', 'templates/layout', 'templates/{0}'.format(self.root))]
         for d in dirs:
             try:
                 os.makedirs(d)
@@ -107,28 +107,23 @@ class Hierarchy(CustomCommand):
 
     def _create_gitkeep(self):
         dirs = [os.path.join(self.root, d) for d in
-                ('controller', 'model', 'static/css',
-                 'templates/layout', 'templates/{0}'.format(self.root))]
+                ('static/css', 'templates/layout', 'templates/{0}'.format(self.root))]
         for d in dirs:
             f = os.path.join(d, '.gitkeep')
             with open(f, 'w'):
                 pass
 
     def _create_packages(self):
-        dirs = [os.path.join(self.root, d) for d in ('controller', 'model')]
-        dirs.append(self.root)
-        for d in dirs:
-            f = os.path.join(d, '__init__.py')
-            with open(f, 'w'):
-                pass
+        self._create_module_with_shebang(
+                os.path.join(self.root, '__init__.py'))
 
     def _create_controller(self):
         self._create_module_with_shebang(
-                os.path.join(self.root, 'controller', '{0}.py'.format(self.controller)))
+                os.path.join(self.root, '{0}.py'.format(self.controller)))
 
     def _create_model(self):
         self._create_module_with_shebang(
-                os.path.join(self.root, 'model', '{0}.py'.format(self.model)))
+                os.path.join(self.root, '{0}.py'.format(self.model)))
 
     def _create_static(self):
         f = os.path.join(self.root, 'static/css', 'style.css')
