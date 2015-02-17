@@ -88,7 +88,7 @@ class Hierarchy(CustomCommand):
     def run(self):
         self._create_directory()
         self._create_gitkeep()
-        self._create_packages()
+        self._create_root()
         self._create_controller()
         self._create_model()
         self._create_static()
@@ -111,9 +111,16 @@ class Hierarchy(CustomCommand):
             with open(f, 'w'):
                 pass
 
-    def _create_packages(self):
-        self._create_module_with_shebang(
-                os.path.join(self.root, '__init__.py'))
+    def _create_root(self):
+        init_file = os.path.join(self.root, '__init__.py')
+        self._create_module_with_shebang(init_file)
+        with open(init_file, 'a') as f:
+            f.write('''\
+from flask import Flask
+
+app = Flask(__name__)
+app.debug = True
+''')
 
     def _create_controller(self):
         self._create_module_with_shebang(
@@ -135,6 +142,16 @@ class Hierarchy(CustomCommand):
 
     def _create_runscript(self):
         self._create_module_with_shebang('run.py')
+        with open('run.py', 'a') as f:
+            f.write("""\
+import os
+from {0} import app
+
+if __name__ == '__main__':
+    app.run(
+        host='127.0.0.1',
+        port=int(os.environ.get('FLASK_PORT', 5000)))
+""".format(self.root))
 
     def _create_module_with_shebang(self, filename):
         with open(filename, 'w') as f:
