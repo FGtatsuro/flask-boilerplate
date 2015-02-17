@@ -129,11 +129,21 @@ if app.debug:
 else:
     app.config['SECRET_KEY'] = os.environ['FLASK_SECRET_KEY']
 DebugToolbarExtension(app)
-""")
+
+from .{0} import *
+""".format(self.controller))
 
     def _create_controller(self):
-        self._create_module_with_shebang(
-                os.path.join(self.root, '{0}.py'.format(self.controller)))
+        controller_file = os.path.join(self.root, '{0}.py'.format(self.controller))
+        self._create_module_with_shebang(controller_file)
+        with open(controller_file, 'a') as f:
+            f.write("""\
+from . import app
+
+@app.route('/')
+def index():
+    return 'Hello flask-boilerplate!'
+""")
 
     def _create_model(self):
         self._create_module_with_shebang(
