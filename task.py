@@ -115,12 +115,21 @@ class Hierarchy(CustomCommand):
         init_file = os.path.join(self.root, '__init__.py')
         self._create_module_with_shebang(init_file)
         with open(init_file, 'a') as f:
-            f.write('''\
+            f.write("""\
+import os
+
 from flask import Flask
+from flask_debugtoolbar import DebugToolbarExtension
 
 app = Flask(__name__)
 app.debug = True
-''')
+
+if app.debug:
+    app.config['SECRET_KEY'] = 'debug_secretkey'
+else:
+    app.config['SECRET_KEY'] = os.environ['FLASK_SECRET_KEY']
+DebugToolbarExtension(app)
+""")
 
     def _create_controller(self):
         self._create_module_with_shebang(
