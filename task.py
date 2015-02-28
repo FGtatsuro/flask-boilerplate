@@ -155,9 +155,23 @@ def index():
             pass
 
     def _create_template(self):
-        f = os.path.join(self.root, 'templates/layout.html')
-        with open(f, 'w'):
-            pass
+        template_base = os.path.join(self.root, 'templates/layout.html')
+        with open(template_base, 'w') as f:
+            f.write("""\
+<!DOCTYPE html>
+<html>
+  <head>
+    {% block head %}
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
+      <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+  </head>
+  <body>
+  <div id="content">{% block content %}{% endblock %}</dib>
+  </body>
+</html>
+""")
 
     def _create_runscript(self):
         self._create_module_with_shebang('run.py')
