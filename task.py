@@ -140,9 +140,11 @@ from .{0} import *
             f.write("""\
 from . import app
 
+from flask import render_template
+
 @app.route('/')
 def index():
-    return 'Hello flask-boilerplate!'
+    return render_template('index.html')
 """)
 
     def _create_model(self):
