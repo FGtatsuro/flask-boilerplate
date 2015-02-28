@@ -140,9 +140,11 @@ from .{0} import *
             f.write("""\
 from . import app
 
+from flask import render_template
+
 @app.route('/')
 def index():
-    return 'Hello flask-boilerplate!'
+    return render_template('index.html')
 """)
 
     def _create_model(self):
@@ -155,9 +157,37 @@ def index():
             pass
 
     def _create_template(self):
-        f = os.path.join(self.root, 'templates/layout.html')
-        with open(f, 'w'):
-            pass
+        template_base = os.path.join(self.root, 'templates/layout.html')
+        with open(template_base, 'w') as f:
+            f.write("""\
+<!DOCTYPE html>
+<html>
+  <head>
+    {% block head %}
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
+      <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+  </head>
+  <body>
+  <div id="content">{% block content %}{% endblock %}</dib>
+  </body>
+</html>
+""")
+
+        index_template = os.path.join(self.root, 'templates/index.html')
+        with open(index_template, 'w') as f:
+            f.write("""\
+{% extends "layout.html" %}
+{% block title %}Hello flask-boilerplate{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+  <h1>Index</h1>
+  <p>Welcome!</p>
+{% endblock %}
+""")
 
     def _create_runscript(self):
         self._create_module_with_shebang('run.py')
