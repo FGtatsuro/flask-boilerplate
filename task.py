@@ -173,6 +173,20 @@ def index():
 </html>
 """)
 
+        index_template = os.path.join(self.root, 'templates/index.html')
+        with open(index_template, 'w') as f:
+            f.write("""\
+{% extends "layout.html" %}
+{% block title %}Hello flask-boilerplate{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+  <h1>Index</h1>
+  <p>Welcome!</p>
+{% endblock %}
+""")
+
     def _create_runscript(self):
         self._create_module_with_shebang('run.py')
         with open('run.py', 'a') as f:
