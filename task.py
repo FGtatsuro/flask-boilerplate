@@ -138,9 +138,9 @@ from .{0} import *
         self._create_module_with_shebang(controller_file)
         with open(controller_file, 'a') as f:
             f.write("""\
-from . import app
-
 from flask import render_template
+
+from . import app
 
 @app.route('/')
 def index():
