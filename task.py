@@ -141,15 +141,24 @@ from .{0} import *
 from flask import render_template
 
 from . import app
+from .models import *
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    dummy = Dummy()
+    return render_template('index.html', dummy=dummy)
 """)
 
     def _create_model(self):
-        self._create_module_with_shebang(
-                os.path.join(self.root, '{0}.py'.format(self.model)))
+        model_file = os.path.join(self.root, '{0}.py'.format(self.model))
+        self._create_module_with_shebang(model_file)
+        with open(model_file, 'a') as f:
+            f.write("""\
+class Dummy(object):
+
+    def list(self):
+        return [{'title': 'title1'}, {'title': 'title2'}]
+""")
 
     def _create_static(self):
         f = os.path.join(self.root, 'static/css', 'style.css')
@@ -185,7 +194,9 @@ def index():
 {% endblock %}
 {% block content %}
   <h1>Index</h1>
-  <p>Welcome!</p>
+    {% for l in dummy.list() %}
+      <div class='title'>{{ l['title'] }}</div>
+    {% endfor %}
 {% endblock %}
 """)
 
