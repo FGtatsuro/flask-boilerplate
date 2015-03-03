@@ -194,7 +194,9 @@ class Dummy(object):
 {% endblock %}
 {% block content %}
   <h1>Index</h1>
-  <p>Welcome!</p>
+    {% for l in dummy.list() %}
+      <div class='title'>{{ l['title'] }}</div>
+    {% endfor %}
 {% endblock %}
 """)
 
