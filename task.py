@@ -138,12 +138,16 @@ from .{0} import *
         self._create_module_with_shebang(controller_file)
         with open(controller_file, 'a') as f:
             f.write("""\
-from flask import render_template
+from flask import render_template, redirect, url_for
 
 from . import app
 from .models import *
 
 @app.route('/')
+def root():
+    return redirect(url_for('index'))
+
+@app.route('/index')
 def index():
     dummy = Dummy()
     return render_template('index.html', dummy=dummy)
