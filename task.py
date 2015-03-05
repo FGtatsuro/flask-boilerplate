@@ -149,8 +149,12 @@ def root():
 
 @app.route('/index')
 def index():
+    return render_template('index.html')
+
+@app.route('/items')
+def items():
     dummy = Dummy()
-    return render_template('index.html', dummy=dummy)
+    return render_template('items.html', dummy=dummy)
 """)
 
     def _create_model(self):
@@ -198,6 +202,20 @@ class Dummy(object):
 {% endblock %}
 {% block content %}
   <h1>Index</h1>
+  This is the index page.
+{% endblock %}
+""")
+
+        items_template = os.path.join(self.root, 'templates/items.html')
+        with open(items_template, 'w') as f:
+            f.write("""\
+{% extends "layout.html" %}
+{% block title %}Item Page{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+  <h1>Items</h1>
   {% for l in dummy.list() %}
     <div class="title">{{ l['title'] }}</div>
   {% endfor %}
