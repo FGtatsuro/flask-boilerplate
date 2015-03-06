@@ -153,8 +153,8 @@ def index():
 
 @app.route('/items')
 def items():
-    dummy = Dummy()
-    return render_template('items.html', dummy=dummy)
+    items = Dummy()
+    return render_template('items.html', items=items)
 """)
 
     def _create_model(self):
@@ -216,8 +216,8 @@ class Dummy(object):
 {% endblock %}
 {% block content %}
   <h1>Items</h1>
-  {% for l in dummy.list() %}
-    <div class="title">{{ l['title'] }}</div>
+  {% for item in items.list() %}
+    <div class="title">{{ item['title'] }}</div>
   {% endfor %}
 {% endblock %}
 """)
