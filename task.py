@@ -216,10 +216,17 @@ class Dummy(object):
 {% endblock %}
 {% block content %}
   <h1>Items</h1>
-  {% for item in items.list() %}
-    <div class="title">{{ item['title'] }}</div>
-  {% endfor %}
+  {% include "list.html" %}
 {% endblock %}
+""")
+
+        # TODO: Create macro utility
+        list_template = os.path.join(self.root, 'templates/list.html')
+        with open(list_template, 'w') as f:
+            f.write("""\
+{% for item in items.list() %}
+  <div class="title">{{ item['title'] }}</div>
+{% endfor %}
 """)
 
     def _create_runscript(self):
