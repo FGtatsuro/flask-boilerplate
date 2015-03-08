@@ -187,7 +187,7 @@ class Dummy(object):
     {% endblock %}
   </head>
   <body>
-  <div id="content">{% block content %}{% endblock %}</dib>
+  <div id="content">{% block content %}{% endblock %}</div>
   </body>
 </html>
 """)
