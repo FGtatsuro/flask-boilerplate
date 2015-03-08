@@ -216,17 +216,19 @@ class Dummy(object):
 {% endblock %}
 {% block content %}
   <h1>Items</h1>
-  {% include "list.html" %}
+  {% import "utils.html" as utils %}
+  {{ utils.list(items.list()) }}
 {% endblock %}
 """)
 
-        # TODO: Create macro utility
-        list_template = os.path.join(self.root, 'templates/list.html')
+        list_template = os.path.join(self.root, 'templates/utils.html')
         with open(list_template, 'w') as f:
             f.write("""\
-{% for item in items.list() %}
-  <div class="title">{{ item['title'] }}</div>
-{% endfor %}
+{%- macro list(items) %}
+  {%- for item in items %}
+    <div class="title">{{ item['title'] }}</div>
+  {%- endfor %}
+{%- endmacro %}
 """)
 
     def _create_runscript(self):
