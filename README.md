@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/FGtatsuro/flask-boilerplate.svg)](https://travis-ci.org/FGtatsuro/flask-boilerplate)
+
 flask-boilerplate
 =================
 
