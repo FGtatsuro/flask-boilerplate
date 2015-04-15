@@ -79,9 +79,9 @@ class Hierarchy(CustomCommand):
 
     def finalize_options(self):
         # Values passed from parent command precede
-        self.root = self.__class__._root or self.root
-        self.controller = self.__class__._controller or self.controller
-        self.model = self.__class__._model or self.model
+        self.root = getattr(self.__class__, '_root', None) or self.root
+        self.controller = getattr(self.__class__, '_controller', None) or self.controller
+        self.model = getattr(self.__class__, '_model', None) or self.model
         if (not self.root or not self.controller or not self.model):
             raise Exception("Some options are shortage.")
 
