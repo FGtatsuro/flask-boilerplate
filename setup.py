@@ -26,7 +26,11 @@ setup(name='flask-boilerplate',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          # -*- Extra requirements: -*-
+          'setuptools',
+          'PasteScript'
+      ],
+      dependency_links=[
+          'hg+ssh://hg@bitbucket.org/FGtatsuro/pastescript@python3_support#egg=PasteScript'
       ],
       entry_points="""
       # -*- Entry points: -*-
