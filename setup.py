@@ -8,7 +8,15 @@ setup(name='flask-boilerplate',
       description='',
       long_description=open(os.path.join(os.path.dirname(__file__), 'README.md')).read(),
       classifiers=[
-      ],  # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
+          'Environment :: Console',
+          'Framework :: Flask',
+          'Intended Audience :: Developers',
+          'License :: OSI Approved :: MIT License',
+          'Programming Language :: Python',
+          'Topic :: Internet :: WWW/HTTP :: WSGI :: Application',
+          'Topic :: Software Development :: Code Generators',
+          'Topic :: Software Development :: Libraries :: Python Modules'
+      ],
       keywords='Flask PasteScript',
       author='Tatsuro Fujii',
       author_email='fujiistorage@gmail.com',
