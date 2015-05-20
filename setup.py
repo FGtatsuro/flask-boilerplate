@@ -52,5 +52,7 @@ setup(name='flask-boilerplate',
       cmdclass={'test': Tox},
       entry_points="""
       # -*- Entry points: -*-
+      [paste.paster_create_template]
+      flask_boilerplate=flask_boilerplate.templates:Boilerplate
       """,
       )
