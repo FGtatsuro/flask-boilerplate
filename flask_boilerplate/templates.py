@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from paste.script.templates import Template
+from paste.script.templates import NoDefault, Template, var
 
 
 class Boilerplate(Template):
@@ -9,4 +9,8 @@ class Boilerplate(Template):
     summary = 'A boilerplate for Flask project'
     required_templates = []
     vars = [
+        var('app_name', 'Flask application name', default=NoDefault),
     ]
+
+    def check_vars(self, vars, command):
+        return Template.check_vars(self, vars, command)
