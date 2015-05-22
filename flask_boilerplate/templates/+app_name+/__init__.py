@@ -15,4 +15,4 @@ else:
     app.config['SECRET_KEY'] = os.environ['FLASK_SECRET_KEY']
 DebugToolbarExtension(app)
 
-from .controllers import *
+from .views import *
