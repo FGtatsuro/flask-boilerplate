@@ -1,3 +1,1 @@
--e hg+ssh://hg@bitbucket.org/FGtatsuro/pastescript@python3_support#egg=PasteScript-python3_support
--e git+git@github.com:FGtatsuro/flask-boilerplate.git@paste_template#egg=Flask_Boilerplate-paste_template
-tox==2.0.1
+tox
