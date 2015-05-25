@@ -44,7 +44,8 @@ setup(name='Flask-Boilerplate',
           'PasteScript'
       ],
       tests_require=[
-          'tox'
+          'tox',
+          'PasteScript'
       ],
       dependency_links=[
           'hg+ssh://hg@bitbucket.org/FGtatsuro/pastescript@python3_support#egg=PasteScript'
