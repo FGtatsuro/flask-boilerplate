@@ -32,6 +32,7 @@ def test_init_default():
             assert os.path.exists(os.path.join(app_name, 'views.py'))
             assert os.path.exists(os.path.join(app_name, 'models.py'))
             assert os.path.exists(os.path.join(app_name, 'static/css/style.css'))
+            assert os.path.exists(os.path.join(app_name, 'static/js/main.js'))
             assert os.path.exists(os.path.join(app_name, 'templates/layout.html'))
             assert os.path.exists(os.path.join(app_name, 'templates/index.html'))
             assert os.path.exists(os.path.join(app_name, 'templates/items.html'))
@@ -39,3 +40,5 @@ def test_init_default():
             assert os.path.exists('run.py')
             assert os.path.exists('Procfile')
             assert os.path.exists('runtime.txt')
+            with open(os.path.join(app_name, 'templates/layout.html')) as f:
+                assert f.read().find('main.js') >= 0
