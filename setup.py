@@ -43,9 +43,6 @@ setup(name='Flask-Boilerplate',
           'setuptools',
           'PasteScript'
       ],
-      dependency_links=[
-          'hg+ssh://hg@bitbucket.org/FGtatsuro/pastescript@python3_support#egg=PasteScript'
-      ],
       cmdclass={'test': Tox},
       entry_points="""
       # -*- Entry points: -*-
