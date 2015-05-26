@@ -1,5 +1,2 @@
-# TODO: This is for only task running
-six
-
-Flask
-Flask-DebugToolbar
+tox
+PasteScript

@@ -1,0 +1,7 @@
+include README.md LICENSE
+include tox.ini
+include requirements.txt
+recursive-include flask_boilerplate *
+recursive-include tests *
+recursive-exclude flask_boilerplate *.pyc
+recursive-exclude tests *.pyc
