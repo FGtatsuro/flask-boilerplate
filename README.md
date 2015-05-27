@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/FGtatsuro/flask-boilerplate.svg?branch=master)](https://travis-ci.org/FGtatsuro/flask-boilerplate)
 
-flask-boilerplate
+Flask-Boilerplate
 =================
 
 Some tasks to create specified projects hierarchy for Flask.
