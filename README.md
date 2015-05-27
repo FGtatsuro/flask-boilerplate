@@ -1,76 +1,71 @@
 [![Build Status](https://travis-ci.org/FGtatsuro/flask-boilerplate.svg?branch=master)](https://travis-ci.org/FGtatsuro/flask-boilerplate)
 
-flask-boilerplate
+Flask-Boilerplate
 =================
 
-Some tasks to create specified projects hierarchy for Flask.
+A Paste template for Flask application.
 
-Create specified project hierarchy
-----------------------------------
+Requirement
+-----------
 
-To create boilerplate, you run `task.py` on your project directory.
-The example when root module name is `test` is as follows.
+- PasteScript
 
-```
-$ cd <Directory this README exists>
-$ pip -r requirements.txt
-$ cp task.py <your project directory> && cd <your project directory>
-$ python task.py init --root test
-running init
-running heroku
-running hierarchy
+Create a boilerplate of Flask application
+-----------------------------------------
 
-# boilerplate
-$ ls -R
-Procfile    run.py      runtime.txt task.py     test
+To create a boilerplate, you run `paster create` command as follows.
 
-./test:
-__init__.py    controllers.py models.py      static         templates
+```bash
+$ paster create --list-template
+Available templates:
+  basic_package:      A basic setuptools-enabled package
+  flask_boilerplate:  A boilerplate for Flask project
+  paste_deploy:       A web application deployed through paste.deploy
 
-./test/static:
-css
+$ paster create --template=flask_boilerplate test_project
+Selected and implied templates:
+  Flask-Boilerplate#flask_boilerplate  A boilerplate for Flask project
 
-./test/static/css:
+Variables:
+  egg:      test_project
+  package:  test_project
+  project:  test_project
+Enter app_name (Flask application name): app
+Creating template flask_boilerplate
+...
+
+$ ls -R test_project
+Procfile         app              requirements.txt run.py           runtime.txt
+
+test_project/app:
+__init__.py models.py   static      templates   views.py
+
+test_project/app/static:
+css js
+
+test_project/app/static/css:
 style.css
 
-./test/templates:
-layout
+test_project/app/static/js:
+main.js
 
-./test/templates/layout:
-layout.html
+test_project/app/templates:
+index.html  items.html  layout.html utils.html
 ```
 
-And we can modify names of model/controller modules as follows.
-In following case, the name of controller module is `con`, and the one of model module is `mod`.
+Develop this project
+--------------------
 
-```
-$ python task.py init --root test --controller con --model mod
-running init
-running heroku
-running hierarchy
+First, please resolve dependencies of this project.
 
-# boilerplate with custom names of model/controller modules
-$ ls -R
-Procfile    run.py      runtime.txt task.py     test
-
-./test:
-__init__.py con.py      mod.py      static      templates
-
-./test/static:
-css
-
-./test/static/css:
-style.css
-
-./test/templates:
-layout
-
-./test/templates/layout:
-layout.html
+```bash
+$ pip install -r requirements.txt
 ```
 
-Once the boilerplate is created, `task.py` isn't needed. Thus you can remove it from your project.
+After some fix, please run tests.
 
-```
-$ rm task.py
+```bash
+$ tox
+# or
+$ python setup.py test
 ```
