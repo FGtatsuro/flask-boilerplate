@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from {{app_name}} import app
 import pytest
 
+from {{app_name}} import create_app
 
 @pytest.fixture
 def client(request):
-    app.config['TESTING'] = True
-    app.debug = False
+    class TestConfig(object):
+        TESTING = True
+    app = create_app(TestConfig)
     client = app.test_client()
     return client
 
