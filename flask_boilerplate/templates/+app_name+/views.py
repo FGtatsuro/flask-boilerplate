@@ -1,20 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flask import render_template, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for
 
-from . import app
 from .models import *
 
-@app.route('/')
-def root():
-    return redirect(url_for('index'))
+main = Blueprint('main', __name__)
 
-@app.route('/index')
+@main.route('/')
+def root():
+    return redirect(url_for('.index'))
+
+@main.route('/index')
 def index():
     return render_template('index.html')
 
-@app.route('/items')
+@main.route('/items')
 def items():
     items = Dummy()
     return render_template('items.html', items=items)
