@@ -2,9 +2,11 @@
 # -*- coding: utf-8 -*-
 
 import os
-from ${app_name} import app
+
+from {{app_name}} import create_app
+from config import DevelopConfig
 
 if __name__ == '__main__':
-    app.run(
+    create_app(DevelopConfig).run(
         host='0.0.0.0',
         port=int(os.environ.get('PORT', 5000)))

@@ -6,13 +6,13 @@ import os
 from flask import Flask
 from flask_debugtoolbar import DebugToolbarExtension
 
-app = Flask(__name__)
-app.debug = True
+def create_app(config):
+    app = Flask(__name__)
 
-if app.debug:
-    app.config['SECRET_KEY'] = 'debug_secretkey'
-else:
-    app.config['SECRET_KEY'] = os.environ['FLASK_SECRET_KEY']
-DebugToolbarExtension(app)
+    app.config.from_object(config)
+    if app.debug:
+        DebugToolbarExtension(app)
 
-from .views import *
+    from .views import main
+    app.register_blueprint(main)
+    return app
