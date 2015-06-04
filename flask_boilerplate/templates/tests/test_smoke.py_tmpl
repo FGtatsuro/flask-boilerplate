@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+from {{app_name}} import app
+import pytest
+
+
+@pytest.fixture
+def client(request):
+    app.config['TESTING'] = True
+    app.debug = False
+    client = app.test_client()
+    return client
+
+def test_index(client):
+    res = client.get('/', follow_redirects=True)
+    assert 'This is the index page.' in res.data
