@@ -15,4 +15,4 @@ def client(request):
 
 def test_index(client):
     res = client.get('/', follow_redirects=True)
-    assert 'This is the index page.' in res.data
+    assert b'This is the index page.' in res.data
