@@ -16,9 +16,9 @@ class Boilerplate(Template):
         var('author_email', 'Author email'),
     ]
     @staticmethod
-    def template_renderer(context, _vars, filename=None):
+    def template_renderer(body, context, filename=None):
         # If you want to use Template in Paste, please use paste.util.template.paste_script_template_renderer
-        return Jinja2Template(context).render(_vars)
+        return Jinja2Template(body).render(context)
 
-    def check_vars(self, vars, command):
-        return Template.check_vars(self, vars, command)
+    def check_vars(self, user_vars, command):
+        return Template.check_vars(self, user_vars, command)
