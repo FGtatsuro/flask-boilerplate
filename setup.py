@@ -44,6 +44,9 @@ setup(name='Flask-Boilerplate',
           'PasteScript',
           'Jinja2'
       ],
+      tests_require=[
+          'tox'
+      ],
       cmdclass={'test': Tox},
       entry_points="""
       # -*- Entry points: -*-
