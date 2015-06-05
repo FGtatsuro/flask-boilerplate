@@ -41,7 +41,8 @@ setup(name='Flask-Boilerplate',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'PasteScript'
+          'PasteScript',
+          'Jinja2'
       ],
       cmdclass={'test': Tox},
       entry_points="""
