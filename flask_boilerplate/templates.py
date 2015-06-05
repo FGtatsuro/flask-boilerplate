@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from paste.script.templates import NoDefault, Template, var
-from paste.util.template import paste_script_template_renderer
+from jinja2 import Template as Jinja2Template
 
 
 class Boilerplate(Template):
@@ -15,7 +15,10 @@ class Boilerplate(Template):
         var('author', 'Author name'),
         var('author_email', 'Author email'),
     ]
-    template_renderer = staticmethod(paste_script_template_renderer)
+    @staticmethod
+    def template_renderer(context, _vars, filename=None):
+        # If you want to use Template in Paste, please use paste.util.template.paste_script_template_renderer
+        return Jinja2Template(context).render(_vars)
 
     def check_vars(self, vars, command):
         return Template.check_vars(self, vars, command)
