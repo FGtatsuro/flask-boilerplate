@@ -1,4 +1,4 @@
-include README.md LICENSE
+include README.rst LICENSE
 include tox.ini
 include requirements.txt
 recursive-include flask_boilerplate *
