@@ -31,11 +31,14 @@ Variables:
   package:  test_project
   project:  test_project
 Enter app_name (Flask application name): app
-Creating template flask_boilerplate
+Enter description (One-line description of the package) ['']: Test application
+Enter author (Author name) ['']:
+Enter author_email (Author email) ['']:
 ...
 
 $ ls -R test_project
-Procfile         app              requirements.txt run.py           runtime.txt
+LICENSE               Procfile              app                   requirements.txt      runtime.txt           test_project.egg-info tox.ini
+MANIFEST.in           README.md             config.py             run.py                setup.py              tests
 
 test_project/app:
 __init__.py models.py   static      templates   views.py
@@ -51,6 +54,12 @@ main.js
 
 test_project/app/templates:
 index.html  items.html  layout.html utils.html
+
+test_project/test_project.egg-info:
+PKG-INFO             SOURCES.txt          dependency_links.txt entry_points.txt     not-zip-safe         requires.txt         top_level.txt
+
+test_project/tests:
+test_smoke.py
 ```
 
 Develop this project
