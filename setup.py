@@ -20,7 +20,7 @@ version = '0.1'
 setup(name='Flask-Boilerplate',
       version=version,
       description='Paste template for Flask project.',
-      long_description=open(os.path.join(os.path.dirname(__file__), 'README.md')).read(),
+      long_description=open(os.path.join(os.path.dirname(__file__), 'README.rst')).read(),
       classifiers=[
           'Environment :: Console',
           'Framework :: Flask',
