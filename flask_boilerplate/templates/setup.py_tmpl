@@ -45,7 +45,7 @@ setup(name={{repr(project)}},
           'tox'
       ],
       dependency_links=[
-          'git+https://github.com/mitsuhiko/flask.git'
+          'git+https://github.com/mitsuhiko/flask.git#egg=Flask'
       ],
       cmdclass={'test': Tox},
       entry_points="""
