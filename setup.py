@@ -44,6 +44,7 @@ setup(name='Flask-Boilerplate',
           'PasteScript',
           'Jinja2'
       ],
+      # 'setup.py test' needs that virtualenv is installed in project.
       tests_require=[
           'tox'
       ],
