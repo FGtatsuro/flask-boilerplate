@@ -6,7 +6,9 @@ import os
 from {{app_name}} import create_app
 from config import DevelopConfig
 
+_app = create_app(DevelopConfig)
+
 if __name__ == '__main__':
-    create_app(DevelopConfig).run(
-        host='0.0.0.0',
+    _app.run(
+        host='127.0.0.1',
         port=int(os.environ.get('PORT', 5000)))
