@@ -2,3 +2,21 @@
 ===========
 
 {{description}}
+
+Run the application on local
+----------------------------
+
+```bash
+$ pip install -r requirements.txt
+$ uwsgi uwsgi.ini
+```
+
+Run the application on Heroku
+-----------------------------
+
+```bash
+$ git init && git add . && git commit -m 'init'
+$ heroku create $(yourappname)
+$ git push heroku master
+```
+
