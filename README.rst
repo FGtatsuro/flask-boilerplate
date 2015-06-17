@@ -37,30 +37,10 @@ To create a boilerplate, you run ``paster create`` command as follows.
     Enter author_email (Author email) ['']:
     ...
 
-    $ ls -R test_project
-    LICENSE               Procfile              app                   requirements.txt      runtime.txt           test_project.egg-info tox.ini
-    MANIFEST.in           README.md             config.py             run.py                setup.py              tests
-
-    test_project/app:
-    __init__.py models.py   static      templates   views.py
-
-    test_project/app/static:
-    css js
-
-    test_project/app/static/css:
-    style.css
-
-    test_project/app/static/js:
-    main.js
-
-    test_project/app/templates:
-    index.html  items.html  layout.html utils.html
-
-    test_project/test_project.egg-info:
-    PKG-INFO             SOURCES.txt          dependency_links.txt entry_points.txt     not-zip-safe         requires.txt         top_level.txt
-
-    test_project/tests:
-    test_smoke.py
+    $ ls test_project
+    LICENSE               README.rst            requirements.txt      setup.cfg             tests
+    MANIFEST.in           app                   run.py                setup.py              tox.ini
+    Procfile              config.ini            runtime.txt           test_project.egg-info uwsgi.ini
 
 Develop this project
 --------------------
