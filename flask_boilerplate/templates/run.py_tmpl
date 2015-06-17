@@ -5,7 +5,10 @@ import os
 
 from paste.deploy import loadapp
 
-_app = loadapp('config:config.ini', name='develop', relative_to='.')
+_app = loadapp(
+    'config:config.ini', 
+    name=os.environ.get('ENVIRONMENT_TYPE', 'develop'), 
+    relative_to='.')
 
 if __name__ == '__main__':
     _app.run(
