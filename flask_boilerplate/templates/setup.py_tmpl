@@ -39,7 +39,8 @@ setup(name={{repr(project)}},
       install_requires=[
           'setuptools',
           'Flask',
-          'Flask-DebugToolbar'
+          'Flask-DebugToolbar',
+          'PasteDeploy'
       ],
       # 'setup.py test' needs that virtualenv is installed in project.
       tests_require=[
