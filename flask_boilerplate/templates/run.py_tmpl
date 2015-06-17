@@ -3,10 +3,9 @@
 
 import os
 
-from {{app_name}} import create_app
-from config import DevelopConfig
+from paste.deploy import loadapp
 
-_app = create_app(DevelopConfig)
+_app = loadapp('config:config.ini', name='develop', relative_to='.')
 
 if __name__ == '__main__':
     _app.run(
