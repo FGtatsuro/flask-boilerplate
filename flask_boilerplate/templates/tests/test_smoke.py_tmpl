@@ -3,13 +3,13 @@
 
 import pytest
 
-from {{app_name}} import create_app
+from {{app_name}} import _create_app
 
 @pytest.fixture
 def client(request):
     class TestConfig(object):
         TESTING = True
-    app = create_app(TestConfig)
+    app = _create_app(TestConfig)
     client = app.test_client()
     return client
 
